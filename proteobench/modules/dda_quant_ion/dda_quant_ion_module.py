@@ -54,7 +54,7 @@ class DDAQuantIonModule(QuantModule):
         return True
 
     def benchmarking(
-        self, input_file_loc: any, input_format: str, user_input: dict, all_datapoints, default_cutoff_min_prec: int = 3
+        self, input_file_loc: any, input_format: str, user_input: dict, all_datapoints, default_cutoff_min_prec: int = 3, dataset_type='standard'
     ) -> tuple[DataFrame, DataFrame, DataFrame]:
         """
         Main workflow of the module. Used to benchmark workflow results.
@@ -91,7 +91,7 @@ class DDAQuantIonModule(QuantModule):
 
         # Parse settings file
         try:
-            parse_settings = ParseSettingsBuilder().build_parser(input_format)
+            parse_settings = ParseSettingsBuilder(acquisition_method='dda', dataset_type=dataset_type).build_parser(input_format)
         except KeyError as e:
             raise ParseSettingsError(f"Error parsing settings file for parsing, settings seem to be missing: {e}")
         except FileNotFoundError as e:

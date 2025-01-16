@@ -7,7 +7,7 @@ import re
 import pandas as pd
 
 
-def load_input_file(input_csv: str, input_format: str) -> pd.DataFrame:
+def load_input_file(input_csv: str, input_format: str, dataset_type=str) -> pd.DataFrame:
     """Method loads dataframe from a csv depending on its format."""
     input_data_frame: pd.DataFrame
     if input_format == "MaxQuant":
@@ -47,7 +47,7 @@ def load_input_file(input_csv: str, input_format: str) -> pd.DataFrame:
         input_data_frame = pd.read_csv(input_csv, low_memory=False, sep="\t")
     elif input_format == "AlphaDIA":
         input_data_frame = pd.read_csv(input_csv, low_memory=False, sep="\t")
-        mapper_path = os.path.join(os.path.dirname(__file__), "io_parse_settings/mapper.csv")
+        mapper_path = os.path.join(os.path.dirname(__file__), f"io_parse_settings/{dataset_type}/mapper.csv")
         mapper_df = pd.read_csv(mapper_path).set_index("gene_name")
         mapper = mapper_df["description"].to_dict()
         input_data_frame["Proteins"] = input_data_frame["genes"].map(
@@ -59,7 +59,7 @@ def load_input_file(input_csv: str, input_format: str) -> pd.DataFrame:
         )
     elif input_format == "FragPipe (DIA-NN quant)":
         input_data_frame = pd.read_csv(input_csv, low_memory=False, sep="\t")
-        mapper_path = os.path.join(os.path.dirname(__file__), "io_parse_settings/mapper.csv")
+        mapper_path = os.path.join(os.path.dirname(__file__), f"io_parse_settings/{dataset_type}/mapper.csv")
         mapper_df = pd.read_csv(mapper_path).set_index("gene_name")
         mapper = mapper_df["description"].to_dict()
         input_data_frame["Protein.Names"] = input_data_frame["Protein.Ids"].map(mapper)
@@ -72,7 +72,7 @@ def load_input_file(input_csv: str, input_format: str) -> pd.DataFrame:
             input_csv.seek(0)
             input_data_frame = pd.read_csv(input_csv, low_memory=False, sep="\t", decimal=",")
         input_data_frame["FG.LabeledSequence"] = input_data_frame["FG.LabeledSequence"].str.strip("_")
-        mapper_path = os.path.join(os.path.dirname(__file__), "io_parse_settings/mapper.csv")
+        mapper_path = os.path.join(os.path.dirname(__file__), f"io_parse_settings/{dataset_type}/mapper.csv")
         mapper_df = pd.read_csv(mapper_path).set_index("gene_name")
         mapper = mapper_df["description"].to_dict()
         input_data_frame["Protein_list"] = input_data_frame["PG.ProteinGroups"].str.split(";")

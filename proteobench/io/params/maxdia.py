@@ -1,6 +1,6 @@
 import re
 from proteobench.io.params import ProteoBenchParameters
-from maxquant import extract_params as extract_params_mq, read_file, build_Series_from_records
+from .maxquant import extract_params as extract_params_mq, read_file, build_Series_from_records
 import pathlib
 import pandas as pd
 

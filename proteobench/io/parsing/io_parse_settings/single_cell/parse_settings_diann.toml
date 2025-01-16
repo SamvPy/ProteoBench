@@ -1,0 +1,38 @@
+[mapper]
+"Modified.Sequence" = "Sequence"
+"Run" = "Raw file"
+"Protein.Names" = "Proteins"
+"Precursor.Charge" = "Charge"
+"Precursor.Quantity" = "Intensity"
+
+[condition_mapper]
+"240pg_10pg_H_Y_r1" = "A"
+"240pg_10pg_H_Y_r2" = "A"
+"240pg_10pg_H_Y_r3" = "A"
+"200pg_50pg_H_Y_r1" = "B"
+"200pg_50pg_H_Y_r2" = "B"
+"200pg_50pg_H_Y_r3" = "B"
+
+[run_mapper]
+"240pg_10pg_H_Y_r1" = "240pg_10pg_H_Y_r1"
+"240pg_10pg_H_Y_r2" = "240pg_10pg_H_Y_r2"
+"240pg_10pg_H_Y_r3" = "240pg_10pg_H_Y_r3"
+"200pg_50pg_H_Y_r1" = "200pg_50pg_H_Y_r1"
+"200pg_50pg_H_Y_r2" = "200pg_50pg_H_Y_r2"
+"200pg_50pg_H_Y_r3" = "200pg_50pg_H_Y_r3"
+
+[species_mapper]
+"_YEAST" = "YEAST"
+"_HUMAN" = "HUMAN"
+
+[modifications_parser]
+"parse_column" = "Sequence"
+"before_aa" = false
+"isalpha" = true
+"isupper" = true
+"pattern" = "\\(([^()]*)\\)"
+"modification_dict" = {"(unimod:35)" = "Oxidation", "(unimod:1)" = "Acetyl", "(unimod:4)" = "Carbamidomethyl"}
+
+[general]
+"contaminant_flag" = "Cont_"
+"decoy_flag" = true

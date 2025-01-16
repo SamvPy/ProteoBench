@@ -1,0 +1,30 @@
+[mapper]
+"Proteins" = "Proteins"
+"Sequence" = "Sequence"
+"Charge" = "Charge"
+"Modified sequence" = "Modified sequence"
+
+
+[condition_mapper]
+"240pg_10pg_H_Y_r1" = "A"
+"240pg_10pg_H_Y_r2" = "A"
+"240pg_10pg_H_Y_r3" = "A"
+"200pg_50pg_H_Y_r1" = "B"
+"200pg_50pg_H_Y_r2" = "B"
+"200pg_50pg_H_Y_r3" = "B"
+
+[run_mapper]
+"240pg_10pg_H_Y_r1" = "240pg_10pg_H_Y_r1"
+"240pg_10pg_H_Y_r2" = "240pg_10pg_H_Y_r2"
+"240pg_10pg_H_Y_r3" = "240pg_10pg_H_Y_r3"
+"200pg_50pg_H_Y_r1" = "200pg_50pg_H_Y_r1"
+"200pg_50pg_H_Y_r2" = "200pg_50pg_H_Y_r2"
+"200pg_50pg_H_Y_r3" = "200pg_50pg_H_Y_r3"
+
+[species_mapper]
+"_YEAST" = "YEAST"
+"_HUMAN" = "HUMAN"
+
+[general]
+"contaminant_flag" = "Cont_"
+"decoy_flag" = true

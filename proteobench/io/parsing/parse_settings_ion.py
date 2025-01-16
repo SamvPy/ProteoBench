@@ -13,9 +13,9 @@ from .parse_ion import get_proforma_bracketed
 
 
 class ParseSettingsBuilder:
-    def __init__(self, parse_settings_dir=None, acquisition_method="dda"):
+    def __init__(self, parse_settings_dir=None, acquisition_method="dda", dataset_type="standard"):
         if parse_settings_dir is None:
-            parse_settings_dir = os.path.join(os.path.dirname(__file__), "io_parse_settings")
+            parse_settings_dir = os.path.join(os.path.dirname(__file__), "io_parse_settings", dataset_type)
         if acquisition_method == "dda":
             self.PARSE_SETTINGS_FILES = {
                 "MaxQuant": os.path.join(parse_settings_dir, "parse_settings_maxquant.toml"),

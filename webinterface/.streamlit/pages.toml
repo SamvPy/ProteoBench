@@ -9,3 +9,7 @@ name = "DDA Quant Ion Level -BETA-"
 [[pages]]
 path = "pages/DIA_Quant_ion.py"
 name = "DIA Quant Ion Level -BETA-"
+
+[[pages]]
+path = "pages/DIA_Quant_ion_sc.py"
+name = "DIA Quant Ion Level (Single-cell) -BETA-" 

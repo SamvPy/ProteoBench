@@ -54,7 +54,7 @@ class DIAQuantIonModule(QuantModule):
         return False
 
     def benchmarking(
-        self, input_file: str, input_format: str, user_input: dict, all_datapoints, default_cutoff_min_prec: int = 3
+        self, input_file: str, input_format: str, user_input: dict, all_datapoints, default_cutoff_min_prec: int = 3, dataset_type='standard'
     ) -> tuple[DataFrame, DataFrame, DataFrame]:
         """
         Main workflow of the module. Used to benchmark workflow results.
@@ -71,6 +71,8 @@ class DIAQuantIonModule(QuantModule):
             DataFrame containing all datapoints from the proteobench repo.
         default_cutoff_min_prec
             Minimum number of runs an ion has to be identified in.
+        dataset_type
+            Dataset folder used for benchmarking.
 
         Returns
         -------
@@ -80,7 +82,7 @@ class DIAQuantIonModule(QuantModule):
 
         # Parse workflow output file
         try:
-            input_df = load_input_file(input_file, input_format)
+            input_df = load_input_file(input_file, input_format, dataset_type=dataset_type)
         except pd.errors.ParserError as e:
             raise ParseError(
                 f"Error parsing {input_format} file, please make sure the format is correct and the correct software tool is chosen: {e}"
@@ -90,7 +92,10 @@ class DIAQuantIonModule(QuantModule):
 
         # Parse settings file
         try:
-            parse_settings = ParseSettingsBuilder(acquisition_method="dia").build_parser(input_format)
+            parse_settings = ParseSettingsBuilder(
+                acquisition_method="dia",
+                dataset_type=dataset_type
+            ).build_parser(input_format)
         except KeyError as e:
             raise ParseSettingsError(f"Error parsing settings file for parsing, settings seem to be missing: {e}")
         except FileNotFoundError as e:
